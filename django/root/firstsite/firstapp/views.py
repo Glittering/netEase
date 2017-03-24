@@ -20,8 +20,12 @@ def first_try(request):
 
 
 def index(request):
+    queryset = request.GET.get('tag')
+    if queryset:
+        article_List = Article.objects.filter(tag=queryset)
+    else:
+        article_List = Article.objects.all()
     context = {}
-    article_List = Article.objects.all()
     context['article_List'] = article_List
     web_page_2 = render(request, 'first_web_2.html', context)
     return web_page_2

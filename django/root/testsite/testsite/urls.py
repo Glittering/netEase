@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from testapp.views import myWeb, index
+from testapp.views import myWeb, index, bing
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^myweb/', myWeb),
-    url(r'^index', index, name='index')
+    url(r'^index', index, name='index'),
+    url(r'^bing', bing, name='bing')
 ]

@@ -65,6 +65,39 @@
     + {{ }}
 
 
+#2017年 03月 23日 星期四 10:14:17 CST
+##Get文章分类
+*Time Will Tell*
+###model
+1. model 添加tag字段，CharField参数choices=两重元组
+###View
+2. request.GET   META   POST
+request.GET.get('tag')
+3. if queryset:   else
+Aritcle.objects.filter(tag=queryset)
+4. html中
+a 的href  ?tag=... 
+##QuerySet
+###迭代  all()
+###存在  exists()
+###求值  repr()  len()  list()  bool()
+###筛选方法
+1. **filter()**
+2. exclude()
+3. annotate()
+4. **order_by()**   desc()  asc()
+5. reverse()
+6. distinct()  去除重复的行
+7. values()
+8. datetimes()
+9. none()
+10. all()
+11. select_related()
+12. prefetch_related()
+13. extra()
+14. 
+.......
+
 
 #Something others
 ##过滤器  {{article.conent|truncatewords:100}}

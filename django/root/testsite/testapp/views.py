@@ -18,7 +18,16 @@ def myWeb(request):
 
 
 def index(request):
-    article_List = Article.objects.all()
+    querySet = request.GET.get('tag')
+    if querySet:
+        article_List = Article.objects.filter(tag=querySet)
+    else:
+        article_List = Article.objects.all()
     context = {'article_List': article_List}
     web = render(request, 'first_web_2.html', context)
     return web
+
+
+def bing(request):
+    bing = render(request, 'bing_ser.html')
+    return bing
