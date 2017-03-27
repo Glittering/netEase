@@ -22,3 +22,11 @@ class Article(models.Model):
 
     def __str__(self):
         return self.headline
+
+
+class Comment(models.Model):
+    name = models.CharField(null=True, blank=True, max_length=50)
+    comment = models.TextField()
+
+    def __str__(self):
+        return self.name

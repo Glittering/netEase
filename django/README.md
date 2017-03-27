@@ -98,6 +98,38 @@ a 的href  ?tag=...
 14. 
 .......
 
+#2017年 03月 24日 星期五 12:05:31 CST
+##post
+1. 快速部署
+2. 渲染表单
++ form django import forms
++ class CommentForm(forms.Form):
++ as_p
+3. 绑定表单&& 返回校验结果  数据分离
++ CommentForm(request.POST)
++ csrf_token
++ form   and   form.errors
+4. 数据存储
++ is_valid()
++ form.cleaned_data[''] form中存储数据的地
++ redirect()  重定向
+5. 定制表单的验证逻辑
++ forms.CharField(widget=forms.Textareai(attrs={'class':'abc'}))  attrs最好不要有
++ error_message={}   
+    - 'required':'' 空参数   
+    - 'invaild'
++ validators={}
++ from django.core.exception import ValidationError
++ raise
+6. 表单的手工渲染
+div class=field
+{{field.label}}
+{{field}}
+{{field.errors|yesno:'error, '}}
+
+
+
+
 
 #Something others
 ##过滤器  {{article.conent|truncatewords:100}}
