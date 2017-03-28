@@ -144,7 +144,15 @@
 1. loading..
 
 
-
+#2017年 03月 28日 星期二 20:24:01 CST
+1. 用text使控件透明
+2. patted减小占位
+3. bodderless 取消边界和menu组件中边界
+4. secondary 来做一个高达上的灰色背景色
+5. basic 消除组件边界
+6. fluid num item 在menu中可以均匀布满一行。
+##CSS
+1. box-sizing: border-box;
 
 
 
