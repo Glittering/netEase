@@ -155,10 +155,14 @@
 1. box-sizing: border-box;
 
 #2017年 03月 29日 星期三 21:05:44 CST
-##准备
+##定位
 1. absolute 不会占位 绝对 父级一定要有position  否则会上级一直找到body
 2. relative 依旧占位 相对 
-
+3. 万能居中    
+    + position:absolute;
+    + left:50%;
+    + top:50%;
+    + transform: translate(-50%, -50%);
 
 
 
