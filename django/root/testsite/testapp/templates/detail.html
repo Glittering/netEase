@@ -11,10 +11,14 @@
     <body>
         <div class="ui inverted top fixed menu borderless red menu">
             <div class="header item">
-                <div class="ui image">
+              {{ article.headline }}
+              <!--  <div class="ui image">
                     <img src="{% static 'images/tenlogo.png' %}" alt="">
-                </div>
+                </div>  -->
             </div>
+            <p>
+              {{ article.content }}
+            </p>
 
             <div class="right menu">
                 <div class="item">
@@ -78,19 +82,35 @@
           <h3 class="ui horizontal  divider header" style="">Comments</h3>
 
             <div class="ui comments" style="border:none">
-              {% for comment in comment_list %}
+              {% if best_comment %}
+                <div class="ui red mini left ribbon label">
+                  <i class="icon fire"></i>
+                  BEST
+                </div>
+                <div class="best comment">
+                  {% for comment in article.under_comments.all %}
+                    <div class="comment">
+                      <div class="content">
+                        <a href="#" class="author">{{comment.name}}</a>
+                        <p class="text">{{comment.comment}}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+                <div class="ui divider"></div>
+              {% endif %}
+              {% for comment in article.under_comments.all %}
                 <div class="comment">
                   <div class="content">
                     <a href="#" class="author">{{comment.name}}</a>
                     <p class="text">{{comment.comment}}</p>
                   </div>
-
                 </div>
               {% endfor %}
             </div>
 
             <div class="ui divider"></div>
-            <form class="ui error tiny form" method="post">
+            <form class="ui error tiny form" method="post" action="{% url 'comment' article.id %}">
                 {% csrf_token %}
                 {% if form.errors %}
                   <div class="ui error message">

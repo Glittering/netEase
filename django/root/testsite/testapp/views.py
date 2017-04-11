@@ -34,19 +34,57 @@ def bing(request):
     return bing
 
 
-def detail(request):
-    if request.method == 'GET':
-        form = CommentForm
-    elif request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            comment = form.cleaned_data['comment']
-            c = Comment(name=name, comment=comment)
-            c.save()
-            return redirect(to='detail')
+# def detail_old(request,page_num):
+#     if request.method == 'GET':
+#         form = CommentForm
+#     elif request.method == 'POST':
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             name = form.cleaned_data['name']
+#             comment = form.cleaned_data['comment']
+#             a = Article.objects.get(id=page_num)
+#             c = Comment(name=name, comment=comment)
+#             c.save()
+#             return redirect(to='detail', page_num=page_num, belong_to=a)
+#     context = {}
+#     a = Article.objects.get(id=page_num)
+#     best_comment = Comment.objects.filter(best_comment=True, belong_to=a)
+#     if best_comment:
+#         context['best_comment'] = best_comment[0]
+#     # comment_list = Comment.objects.all();
+#     article = Article.objects.get(id=page_num)
+#     context['article'] = article
+#     # context['comment_list'] = comment_list
+#     context['form'] = form
+#     return render(request, 'detail.html', context)
+#
+
+def detail(request, page_num, error_form=None):
     context = {}
-    comment_list = Comment.objects.all();
-    context['comment_list'] = comment_list
-    context['form'] = form
+    form = CommentForm
+    a = Article.objects.get(id=page_num)
+    best_comment = Comment.objects.filter(best_comment=True, belong_to=a)
+    if best_comment:
+        context['best_comment'] = best_comment[0]
+    # comment_list = Comment.objects.all();
+    article = Article.objects.get(id=page_num)
+    context['article'] = article
+    # context['comment_list'] = comment_list
+    if error_form is not None:
+        context['form'] = error_form
+    else:
+        context['form'] = form
     return render(request, 'detail.html', context)
+
+
+def detail_comment(request, page_num):
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        name = form.cleaned_data['name']
+        comment = form.cleaned_data['comment']
+        a = Article.objects.get(id=page_num)
+        c = Comment(name=name, comment=comment, belong_to=a)
+        c.save()
+    else:
+        return detail(request, page_num, error_form=form)
+    return redirect(to='detail', page_num=page_num)

@@ -128,8 +128,27 @@ div class=field
 {{field.errors|yesno:'error, '}}
 
 
+#2017年 04月 06日 星期四 19:13:32 CST
+1. url
+- (?P<page_num>\d+)  从url获取数字
+- (?P<page_num>\d+)/comment  试表分离
+- views 中获取参数，用get分离文章
+
+2. 评论
+- models 中加ForeignKey(to, related_name)
+- best_comment BooleanField(default)
+- templates 中 用 article.under_comments.all
+
+3. 一图多表
+- url 分离
+- view中 form和 comment分离
+- valid失败后返回error
+- detail中 判断error
 
 
+#2017年 04月 07日 星期五 18:34:28 CST
+1. STATICFILES_DIRS
+2. MEDIA_ROOT
 
 #Something others
 ##过滤器  {{article.conent|truncatewords:100}}
