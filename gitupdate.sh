@@ -6,7 +6,7 @@ netEase
 pythonLearn 
 );
 
-bash_str=~/Documents/
+bash_str=$(pwd)/
 bash_log=log.md
 
 for i in ${array_name[@]};
